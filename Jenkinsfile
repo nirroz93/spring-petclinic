@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3.5'
-            args '-v /root/.m2:/root/.m2'
+            args '-v /root/.m2:/root/.m2 -v /tmp:/tmp/host'
         }
     }
     stages {
@@ -22,16 +22,12 @@ pipeline {
              			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              			body: "Build fail"
 			echo "Fail!"
-			sh 'touch /tmp/blabla'
                 }
-		success {
-			sh 'touch /tmp/bla!'
-		}	
             }
         }
         stage('Deliver') { 
             steps {
-                sh 'mv target/spring-petclinic-1.5.1.jar /tmp' 
+                sh 'mv target/spring-petclinic-1.5.1.jar /tmp/host' 
             }
         }
     }
