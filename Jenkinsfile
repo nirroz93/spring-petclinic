@@ -13,6 +13,9 @@ pipeline {
             }
             post {
                 failure {
+			mail to: 'nirroz93@gmail.com',
+             			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             			body: "Build fail"
 			echo "Fail!"
 			sh 'touch /tmp/blabla'
                 }
