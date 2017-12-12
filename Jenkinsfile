@@ -8,7 +8,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                mail to: 'nirroz93@gmail.com',
+                                subject: "Started Pipeline: ${currentBuild.fullDisplayName}",
+                                body: "pipelinestart"
+		sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
@@ -20,7 +23,6 @@ pipeline {
 			mail to: 'nirroz93@gmail.com',
              			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              			body: "Build fail"
-			echo "Fail!"
                 }
             }
         }
