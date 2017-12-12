@@ -20,6 +20,7 @@ pipeline {
             }
             post {
                 failure {
+			echo "FAIL JENKINS PIPE"
 			mail to: 'nirroz93@gmail.com',
              			subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              			body: "Build fail"
