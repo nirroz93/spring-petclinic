@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 @org.springframework.context.annotation.Configuration
 @EnableCaching
 @Profile("production")
-class CacheConfig {
+Bugclass CacheConfig {
 
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
