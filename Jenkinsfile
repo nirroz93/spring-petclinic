@@ -24,13 +24,14 @@ pipeline {
                 sh 'mv target/spring-petclinic-1.5.1.jar /tmp/host' 
             }
         }
-	post {
-            failure {
-	    echo "FAIL JENKINS PIPE"
-	    mail to: 'nirroz93@gmail.com',
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Build fail"
-            }
+    }
+    post {
+       failure {
+           echo "FAIL JENKINS PIPE"
+	   mail to: 'nirroz93@gmail.com',
+               subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+               body: "Build fail"
+          }
         }
     }
 }
